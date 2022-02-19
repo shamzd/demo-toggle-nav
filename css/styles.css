@@ -2,3 +2,102 @@ body {
     background-color: #192f5e;
     font-family: sans-serif;
 }
+
+/********************** Header & Nav*************************/
+
+/* Step 1. Style the nav before you hide it as you cannot see it after hiding, starting with the mobile view, then hide it after  */
+
+header{
+    background-color: #fff;
+    padding: 2%; /* or rems*/
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-between;
+}
+
+.toggle-btn {
+    border: none;
+    background-color: #fff;
+}
+
+.toggle-btn:hover{
+    cursor: pointer;
+}
+
+nav{
+    flex: 1 0 100%;
+}
+
+.menu a{
+    color: #3f3f3f;
+    text-decoration: none;
+    /* allows the clickable area of the anchor tag to take up the full width and height of the li  */
+    display: block;
+}
+
+.menu li{
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.menu a:hover,
+.menu a:active{
+    background-color: gainsboro;
+    border-radius: 4px;
+}
+
+/* step 2. Hide the nav for the default screen. do this by display none, but display none will not take a transition property */
+
+header nav {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+/* Step 3. Create a special class inside our css that will show the nav. This class only exists in the css file for now, do not add to the HTML markup. the JS file will add this class tot he html for us when this button is clicked.  */
+.show-nav {
+    max-height: 28.75rem;
+}
+
+/* ************************* Section **********************  */
+section{
+    padding: 3.125rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+section p{
+    color: #d5e294;
+}
+
+section h2{
+    color: #fff;
+    font-size: 3.175rem;
+}
+
+/* Step 4. Style for wider screen RWD. Add media query, where the nav will show by default. Hide the button, and style the nav as a horizontal nav for the desktop or wider screen  */
+/* show the nav links as soons as there is room on the view port to do so, play with the moin-width value to find the ideal viewport width */
+@media screen and (min-width: 625px) {
+    .toggle-btn{
+        display: none;
+    }
+
+    /* we want to see the nav by default, so give it its height back  */
+    header nav {
+        max-height: initial;
+        overflow: visible;
+        /* flex shorthand takes 3 values, grow, shrink basis */
+        flex: 0 0 auto;
+    }
+
+    /* style the menu links horizontally */
+    ul.menu {
+        display: flex;
+        gap: 1rem;
+    }
+
+    ul.menu a {
+        padding: 0 0.75rem;
+    }
+}
